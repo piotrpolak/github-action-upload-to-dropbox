@@ -1,0 +1,22 @@
+name: 'Upload file to Dropbox'
+description: 'Uploads file to a Dropbox folder'
+inputs:
+  accessToken:
+    description: 'Dropbox OAuth token'
+    required: true
+  files:
+    description: 'Coma separated list of files'
+    required: true
+  destination:
+    description: 'Dropbox destination path'
+    required: true
+outputs:
+  files:
+    description: "List of files uploaded to Dropbox"
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  env:
+    ACCESS_TOKEN: ${{ inputs.accessToken }}
+    FILES: ${{ inputs.files }}
+    DESTINATION: ${{ inputs.destination }}
